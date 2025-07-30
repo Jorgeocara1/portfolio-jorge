@@ -1,143 +1,125 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Jorge Antonio Arrono Elias | AI Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfólio Jorge Antonio Arrono Elias</title>
   <style>
     body {
-      margin: 0;
+      background-color: #121212;
+      color: #ffffff;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #1a1a1a;
-      color: #f4f4f4;
-    }
-    header {
-      background: #111;
-      padding: 2rem;
-      text-align: center;
-    }
-    h1 {
       margin: 0;
-      font-size: 2.5rem;
+      padding: 0;
     }
-    .description {
-      font-size: 1.2rem;
-      color: #ccc;
+
+    .apresentacao {
+      text-align: center;
+      margin-top: 40px;
+      margin-bottom: 60px;
     }
-    .container {
-      max-width: 1000px;
-      margin: auto;
-      padding: 2rem;
+
+    .apresentacao h1 {
+      font-size: 2.8rem;
+      color: #00ffcc;
+      margin-bottom: 0.5rem;
     }
-    section {
-      margin-bottom: 4rem;
-      background: #2a2a2a;
-      padding: 2rem;
+
+    .apresentacao .subtitulo {
+      font-size: 1.3rem;
+      color: #bbb;
+      margin-bottom: 1.5rem;
+    }
+
+    .apresentacao .descricao {
+      font-size: 1rem;
+      color: #ddd;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .secao {
+      background-color: #1e1e1e;
+      margin: 30px auto;
+      padding: 20px;
       border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0, 255, 180, 0.3);
+      box-shadow: 0 0 12px #00ffaa22;
+      max-width: 700px;
     }
-    h2 {
-      color: #00ffd5;
+
+    .secao h2 {
+      color: #00ffaa;
     }
-    button {
-      background: #00ffd5;
+
+    button, select {
+      background-color: #00ffaa;
       color: #000;
-      padding: 0.6rem 1.2rem;
       border: none;
-      border-radius: 6px;
-      font-size: 1rem;
+      padding: 10px 15px;
+      border-radius: 8px;
       cursor: pointer;
-      margin-top: 1rem;
-      transition: transform 0.2s;
+      font-weight: bold;
     }
+
     button:hover {
-      transform: scale(1.05);
+      background-color: #00cc88;
     }
-    input, select {
-      padding: 0.5rem;
-      margin-top: 1rem;
-      border-radius: 6px;
-      border: none;
-      font-size: 1rem;
-      width: 100%;
-      max-width: 300px;
-    }
-    #tradeResult, #lessonResult {
-      margin-top: 1.2rem;
+
+    .frases {
+      margin-top: 15px;
+      color: #88ffcc;
       font-style: italic;
-      color: #9efff7;
     }
   </style>
 </head>
 <body>
-  <header>
+
+  <div class="apresentacao">
     <h1>Jorge Antonio Arrono Elias</h1>
-    <p class="description">AI Developer | Prompt Engineer | Web Automation Specialist</p>
-  </header>
+    <p class="subtitulo">Desenvolvedor de IA | Engenheiro de Prompts | Especialista em Automação Web</p>
+    <p class="descricao">
+      Sou apaixonado por tecnologia e IA aplicada, com foco em automações inteligentes, engenharia de prompts e desenvolvimento de soluções criativas com ferramentas modernas como ChatGPT, Cursor e Figma-to-Code.
+      <br><br>
+      Este portfólio apresenta projetos que misturam estratégia, automação e inteligência artificial, prontos para resolver problemas reais.
+    </p>
+  </div>
 
-  <div class="container">
-    <section>
-      <h2>🤖 IA TradeBot Sim – Estratégia de Acumulação BTC</h2>
-      <p>Simule uma estratégia de acúmulo frente à lateralização do Bitcoin no cenário atual.</p>
-      <button onclick="simulateTrade()">Iniciar Simulação</button>
-      <p id="tradeResult"></p>
-    </section>
+  <div class="secao">
+    <h2>🤖 IA TradeBot Sim – Estratégia de Acumulação BTC</h2>
+    <p>Simule uma estratégia de acúmulo frente à lateralização do Bitcoin no cenário atual.</p>
+    <button onclick="simularBot()">Iniciar Simulação</button>
+    <p><em>🔄 Executando compras fracionadas de 5% do capital...</em></p>
+  </div>
 
-    <section>
-      <h2>🧠 MiniAulas com IA</h2>
-      <p>Escolha um tema e receba uma microaula com 3 frases impactantes.</p>
-      <select id="lessonSelect">
-        <option value="economia">Economia Inteligente</option>
-        <option value="marketing">Marketing Digital</option>
-        <option value="psicologia">Psicologia e Foco</option>
-      </select>
-      <button onclick="generateLesson()">Ver MiniAula</button>
-      <div id="lessonResult"></div>
-    </section>
+  <div class="secao">
+    <h2>🧠 MiniAulas com IA</h2>
+    <p>Escolha um tema e receba uma microaula com 3 frases impactantes.</p>
+    <select id="tema">
+      <option>Economia Inteligente</option>
+    </select>
+    <button onclick="mostrarMiniAula()">Ver MiniAula</button>
+    <div class="frases" id="resultado">
+      <!-- Resultado da mini aula -->
+    </div>
   </div>
 
   <script>
-    function simulateTrade() {
-      const msgs = [
-        "🧠 Detectando lateralização entre $58k e $61k...",
-        "📥 Executando compras fracionadas de 5% do capital...",
-        "⏳ Acúmulo em progresso...",
-        "✅ Acumulamos 0.0072 BTC ao longo de 7 ciclos com segurança!"
-      ];
-      let result = "";
-      msgs.forEach((msg, i) => {
-        setTimeout(() => {
-          document.getElementById('tradeResult').innerText = msg;
-        }, i * 1200);
-      });
+    function simularBot() {
+      alert("Simulação iniciada com capital fracionado!");
     }
 
-    function generateLesson() {
-      const theme = document.getElementById("lessonSelect").value;
-      const content = {
-        economia: [
-          "Ganhar mais não adianta se você gasta como rico e vive como pobre.",
-          "Quem compra por impulso financia o lucro de quem pensa com calma.",
-          "Cada real mal gasto é um investimento que deixou de existir."
-        ],
-        marketing: [
-          "Você não vende produto, vende transformação.",
-          "O que toca é o emocional, o racional só justifica.",
-          "Poste com propósito ou cale-se com dignidade."
-        ],
-        psicologia: [
-          "A mente dispersa é a maior ladra de potencial.",
-          "Foco não é talento, é treino repetido em silêncio.",
-          "Se você não domina seus impulsos, alguém vai lucrar com eles."
-        ]
-      };
-      const lesson = content[theme];
-      let formatted = "<ul>";
-      lesson.forEach(p => { formatted += "<li>" + p + "</li>"; });
-      formatted += "</ul>";
-      document.getElementById("lessonResult").innerHTML = formatted;
+    function mostrarMiniAula() {
+      const frases = [
+        "💸 Ganhar mais não adianta se você gasta como rico e vive como pobre.",
+        "📉 Quem compra por impulso financia o lucro de quem pensa com calma.",
+        "💡 Cada real mal gasto é um investimento que deixou de existir."
+      ];
+      const resultado = document.getElementById("resultado");
+      resultado.innerHTML = frases.map(f => "<p>" + f + "</p>").join("");
     }
   </script>
+
 </body>
 </html>
