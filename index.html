@@ -1,52 +1,72 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jorge Antonio Arrono Elias | AI Developer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jorge Antonio Arrono Elias | AI Portfolio</title>
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
+      background: #1a1a1a;
+      color: #f4f4f4;
     }
     header {
       background: #111;
-      color: #fff;
       padding: 2rem;
       text-align: center;
     }
     h1 {
       margin: 0;
+      font-size: 2.5rem;
     }
     .description {
       font-size: 1.2rem;
-      margin-top: 0.5rem;
+      color: #ccc;
     }
     .container {
-      max-width: 900px;
+      max-width: 1000px;
       margin: auto;
       padding: 2rem;
     }
     section {
-      margin-bottom: 2.5rem;
+      margin-bottom: 4rem;
+      background: #2a2a2a;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 255, 180, 0.3);
     }
     h2 {
-      color: #111;
+      color: #00ffd5;
     }
-    ul {
-      padding-left: 1.5rem;
+    button {
+      background: #00ffd5;
+      color: #000;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: transform 0.2s;
     }
-    a {
-      color: #007BFF;
-      text-decoration: none;
+    button:hover {
+      transform: scale(1.05);
     }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: #f1f1f1;
-      font-size: 0.9rem;
+    input, select {
+      padding: 0.5rem;
+      margin-top: 1rem;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+      width: 100%;
+      max-width: 300px;
+    }
+    #tradeResult, #lessonResult {
+      margin-top: 1.2rem;
+      font-style: italic;
+      color: #9efff7;
     }
   </style>
 </head>
@@ -58,41 +78,66 @@
 
   <div class="container">
     <section>
-      <h2>About Me</h2>
-      <p>I specialize in developing smart, efficient web applications and automations using AI tools like ChatGPT, Cursor, and GitHub Copilot. I'm passionate about transforming ideas into functional systems that simplify work and deliver value fast.</p>
+      <h2>🤖 IA TradeBot Sim – Estratégia de Acumulação BTC</h2>
+      <p>Simule uma estratégia de acúmulo frente à lateralização do Bitcoin no cenário atual.</p>
+      <button onclick="simulateTrade()">Iniciar Simulação</button>
+      <p id="tradeResult"></p>
     </section>
 
     <section>
-      <h2>AI Projects & Tools</h2>
-      <ul>
-        <li>Built dynamic content generation systems using Cursor + ChatGPT</li>
-        <li>Created prompt automation workflows for high-speed content production</li>
-        <li>Integrated AI tools into frontend and backend environments for data-driven actions</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Figma to Frontend</h2>
-      <p>Converted detailed Figma designs into responsive React components using AI-assisted tools, speeding up delivery to ~2 hours/screen. Integrated visual layouts with backend APIs and third-party services like SSO and Stripe.</p>
-    </section>
-
-    <section>
-      <h2>Automations & Bots</h2>
-      <ul>
-        <li>Deployed grid bots for crypto trading with performance tracking</li>
-        <li>Created low-code automations using Make.com and Python</li>
-        <li>Connected AI workflows with APIs and databases for real-time data processing</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Contact & Booking</h2>
-      <p>Want to connect? Schedule a quick call with me here: <a href="https://calendly.com/seunome/15min" target="_blank">https://calendly.com/seunome/15min</a></p>
+      <h2>🧠 MiniAulas com IA</h2>
+      <p>Escolha um tema e receba uma microaula com 3 frases impactantes.</p>
+      <select id="lessonSelect">
+        <option value="economia">Economia Inteligente</option>
+        <option value="marketing">Marketing Digital</option>
+        <option value="psicologia">Psicologia e Foco</option>
+      </select>
+      <button onclick="generateLesson()">Ver MiniAula</button>
+      <div id="lessonResult"></div>
     </section>
   </div>
 
-  <footer>
-    <p>This portfolio was built with a bit of human creativity and a generous dose of AI insight, inspired by crazy ideas shared with ChatGPT... some of them possibly ahead of their time. 😉</p>
-  </footer>
+  <script>
+    function simulateTrade() {
+      const msgs = [
+        "🧠 Detectando lateralização entre $58k e $61k...",
+        "📥 Executando compras fracionadas de 5% do capital...",
+        "⏳ Acúmulo em progresso...",
+        "✅ Acumulamos 0.0072 BTC ao longo de 7 ciclos com segurança!"
+      ];
+      let result = "";
+      msgs.forEach((msg, i) => {
+        setTimeout(() => {
+          document.getElementById('tradeResult').innerText = msg;
+        }, i * 1200);
+      });
+    }
+
+    function generateLesson() {
+      const theme = document.getElementById("lessonSelect").value;
+      const content = {
+        economia: [
+          "Ganhar mais não adianta se você gasta como rico e vive como pobre.",
+          "Quem compra por impulso financia o lucro de quem pensa com calma.",
+          "Cada real mal gasto é um investimento que deixou de existir."
+        ],
+        marketing: [
+          "Você não vende produto, vende transformação.",
+          "O que toca é o emocional, o racional só justifica.",
+          "Poste com propósito ou cale-se com dignidade."
+        ],
+        psicologia: [
+          "A mente dispersa é a maior ladra de potencial.",
+          "Foco não é talento, é treino repetido em silêncio.",
+          "Se você não domina seus impulsos, alguém vai lucrar com eles."
+        ]
+      };
+      const lesson = content[theme];
+      let formatted = "<ul>";
+      lesson.forEach(p => { formatted += "<li>" + p + "</li>"; });
+      formatted += "</ul>";
+      document.getElementById("lessonResult").innerHTML = formatted;
+    }
+  </script>
 </body>
 </html>
